@@ -1,4 +1,30 @@
-.App-logo{
+/* .App-logo{
     width: 1295px;
     height: 560px;
+} */
+.Home{
+    background-image: url(./images/food.jpg);
+    height: 500px; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.login{
+    margin-left: 1000px;
+    margin-top: 20px;
+    font-size: larger;
+}
+.signup{
+    margin-left: 30px;
+    font-size: larger;
+}
+.header{
+    margin-left: 450px;
+    margin-top: 100px;
+    color: green;
+    font-size: 80px;
+}
+.search{
+    width: 100px;
 }
