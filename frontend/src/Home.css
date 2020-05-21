@@ -4,7 +4,7 @@
 } */
 .Home{
     background-image: url(./images/food.jpg);
-    height: 500px; 
+    height: max-content; 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -14,17 +14,42 @@
     margin-left: 1000px;
     margin-top: 20px;
     font-size: larger;
+    background-color: springgreen;
+    font-weight: bold;
 }
 .signup{
     margin-left: 30px;
     font-size: larger;
+    background-color: springgreen;
+    font-weight: bold;
 }
 .header{
     margin-left: 450px;
     margin-top: 100px;
-    color: green;
+    color:springgreen;
     font-size: 80px;
 }
+.searchbox{
+    width: 600px;
+    height: 38px;
+    margin-left: 30%;
+}
 .search{
-    width: 100px;
+    height: 35px;
+    background-color: springgreen;
+    width: 80px;
+    font-size: large;
+    font-weight: bold;
+}
+.dishes{
+    border:1px solid #000;
+    background-color: blanchedalmond;
+    width: 50%;
+}
+.restourent{
+    margin-left: 40%;
+    font-weight: bolder;
+}
+.termsandcondition{
+    color: black;
 }
