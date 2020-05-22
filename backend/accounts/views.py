@@ -47,8 +47,8 @@ class UserViewSet(GenericViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def retrieve(self, request, pk):
-        user = User.objects.get(pk=pk)
+    def list(self, request):
+        user = User.objects.get(email=request.user)
         data = {}
         data['id'] = user.id
         data['name'] = user.name
