@@ -1,0 +1,44 @@
+.mainborder{
+    border:1px solid #000;
+    height: max-content;
+   
+}
+.login{
+    font-size: xx-large;
+    background-color: white;
+    margin-left: 50%;
+}
+.phone{
+    margin-left: 30%;
+    font-size: x-large;
+
+}
+.phones{
+    margin-left: 34px;
+}
+.password{
+    margin-left: 30%;
+    font-size: x-large;
+}
+.loginbutton{
+    font-size: x-large;
+    margin-left: 50%;
+    font-weight: bold;
+}
+.logins{
+    background-color: deepskyblue;
+}
+.signupbutton{
+    font-size: x-large;
+    font-weight: bold;
+    background-color: deepskyblue;
+}
+.signups{
+    margin-left: 40%;
+}
+.loginwithfb{
+    margin-left: 47%;
+}
+.errorMsgphone{
+    margin-left: 47%;
+}

@@ -5,13 +5,32 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './Home.css';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
+
 export default class Home extends Component {
 
   render() {
     return (
       <div className="Home">
-        <button className="login" href="#">Login</button>
-        <button className="signup" href="#">Signup</button>
+        <Row>
+          <Col sm={{ size: 'auto', offset: 8 }}>
+            <div>
+              <Nav tabs>
+                <NavItem>
+                  <NavLink href="/Login" className="logine">Login</NavLink>
+                </NavItem>
+              </Nav>
+            </div>
+          </Col>
+          <Col sm={{ size: 'auto', offset: 0 }}>
+            <div>
+              <Nav tabs>
+                <NavItem>
+                  <NavLink href="/Signup" className="signup">Signup</NavLink>
+                </NavItem>
+              </Nav>
+            </div>
+          </Col>
+        </Row>
         <div className="header">Food Delivery</div>
         <input type="searchbox" placeholder="Search your food here" className="searchbox"></input>
         <button className="search">Search</button><br /><br />
@@ -31,7 +50,7 @@ export default class Home extends Component {
               </Col>
               <Col>
                 <ListGroup>
-                  <ListGroupItem color="success" ><p className="restourent">Restourent</p></ListGroupItem>
+                  <ListGroupItem color="success" ><p className="restourent">Restaurant</p></ListGroupItem>
                   <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
                   <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
                   <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>

@@ -10,15 +10,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.login{
-    margin-left: 1000px;
+.logine{
     margin-top: 20px;
     font-size: larger;
     background-color: springgreen;
     font-weight: bold;
 }
 .signup{
-    margin-left: 30px;
+    margin-top: 20px;
     font-size: larger;
     background-color: springgreen;
     font-weight: bold;
@@ -41,11 +40,11 @@
     font-size: large;
     font-weight: bold;
 }
-.dishes{
+/* .dishes{
     border:1px solid #000;
     background-color: blanchedalmond;
     width: 50%;
-}
+} */
 .restourent{
     margin-left: 40%;
     font-weight: bolder;
