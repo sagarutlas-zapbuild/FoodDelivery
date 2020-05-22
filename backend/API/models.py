@@ -10,6 +10,7 @@ class Restaurant(models.Model):
     """
     Restaurant and it's details
     """
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, limit_choices_to={'is_staff': True})
     name = models.CharField(max_length=250)
     address = models.TextField()
     city = models.CharField(max_length=105)
@@ -64,6 +65,9 @@ payment_choices = [
 
 
 class Cart(models.Model):
+    """
+    Carts made by users. It also holds their total amount.
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     total = models.FloatField()
@@ -138,6 +142,9 @@ class RestaurantRating(models.Model):
 
 
 class ItemRating(models.Model):
+    """
+    Ratings for Item
+    """
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     item = models.ForeignKey(
