@@ -49,20 +49,25 @@ class Login extends Component {
     handleLogin = (event, data) => {
         event.preventDefault();
         fetch(loginUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
-          .then(res => res.json())
-          .then(json => {
-            localStorage.setItem('token', json.token);
-            localStorage.setItem('user_email', json.user.email);
-            localStorage.setItem('user_name', json.user.name);
-          }).catch((err) => {
-            console.log(err);
-          });}
+            .then(res => res.json())
+            .then(json => {
+                localStorage.setItem('token', json.token);
+                localStorage.setItem('user_email', json.user.email);
+                localStorage.setItem('user_name', json.user.name);
+                this.setState({
+                    email: '',
+                    password: ''
+                })
+            }).catch((err) => {
+                console.log(err);
+            });
+    }
     render() {
         if (localStorage.getItem('token') ? true : false) {
             return (<Redirect to='/home' />);
@@ -88,14 +93,14 @@ class Login extends Component {
                     <Form.Row>
                         <Button type="submit" variant="primary">Login</Button>
                         <div class="fb-login-button"
-                        data-size="large"
-                        data-button-type="continue_with"
-                        data-layout="rounded"
-                        data-auto-logout-link="true"
-                        data-use-continue-as="true"
-                        data-width=""></div>
+                            data-size="large"
+                            data-button-type="continue_with"
+                            data-layout="rounded"
+                            data-auto-logout-link="true"
+                            data-use-continue-as="true"
+                            data-width=""></div>
                     </Form.Row>
-                    
+
 
                 </Form>
             </div>);
