@@ -5,7 +5,7 @@ const TopNav = () => {
     if (localStorage.getItem('token') ? true : false) {
         return (<div>
 
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <NavbarToggler aria-controls="responsive-navbar-nav" />
             <Collapse className="justify-content-end">
 
                 <Nav className="mr-auto">

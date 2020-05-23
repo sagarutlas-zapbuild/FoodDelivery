@@ -1,106 +1,106 @@
-import React, { Component } from 'react'
-import './Login.css';
-import { Row, Col, Label } from 'reactstrap';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-import {loginUrl} from './Urls';
+/*global FB*/
 
-export default class Login extends Component {
-    constructor(state) {
-        super(state)
+
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { Component } from 'react';
+import { loginUrl } from './Urls';
+
+class Login extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            phone: '',
-            password: '',
-            error_phone: '',
-            error_password: '',
-        }
+            email: '',
+            password: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    changeHandler = e => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-    validateForm() {
-        let error_phone = "";
-        let error_password = "";
+    componentDidMount() {
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '262698028436859',
+                cookie: true,
+                xfbml: true,
+                version: 'v7.0'
+            });
 
-        if (!this.state.phone) {
-            error_phone = "*Please enter your mobile no.";
-        }
+            FB.AppEvents.logPageView();
 
-        if (!this.state.password) {
-            error_password = "*Please enter your password.";
-        }
-        if (error_phone || error_password) {
-            this.setState({ error_phone, error_password });
-            return false;
-        }
-        return true;
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     }
-    submitHandler = e => {
-        const isValid = this.validateForm();
-        if (isValid) {
-            e.preventDefault();
-            const uploadData = new FormData();
-            uploadData.append('phone', this.state.phone);
-            uploadData.append('password', this.state.password);
-            console.log(uploadData);
-            fetch(loginUrl, {
-                method: 'POST',
-                body: uploadData
-            })
-                .then(res => console.log(res))
-                .catch(error => console.log(error))
-            // window.location.reload(false);
-        }
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value,
+        });
     }
 
+    handleLogin = (event, data) => {
+        event.preventDefault();
+        fetch(loginUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+          .then(res => res.json())
+          .then(json => {
+            localStorage.setItem('token', json.token);
+            localStorage.setItem('user_email', json.user.email);
+            localStorage.setItem('user_name', json.user.name);
+          }).catch((err) => {
+            console.log(err);
+          });}
     render() {
-        return (
-            <div className="mainborder">
-                <div className="login">Login</div><br />
-                <Row className="phone">
-                    <Col sm={{ size: 'auto', offset: 4 }}>
-                        <Label for="phone" >Phone</Label>
-                    </Col>
-                    <Col sm={{ size: 'auto', offset: 0 }}>
-                        <input type="text" name="phone" value={this.state.phone} id="phone"
-                            placeholder="Enter phone no." className="phones"
-                            onChange={this.changeHandler}></input>
-                    </Col>
-                </Row>
-                <div style={{ color: "red", fontSize: "14px" }}
-                    className="errorMsgphone">{this.state.error_phone}</div><br />
-                <Row className="phone">
-                    <Col sm={{ size: 'auto', offset: 4 }}>
-                        <Label for="password" >Password</Label>
-                    </Col>
-                    <Col sm={{ size: 'auto', offset: -3 }}>
-                        <input type="password" name="password" value={this.state.password} id="password"
-                            placeholder="Enter password" onChange={this.changeHandler}></input>
-                    </Col>
-                </Row>
-                <div style={{ color: "red", fontSize: "14px" }}
-                    className="errorMsgphone">{this.state.error_password}</div><br />
-                <Row>
-                    <Col className="loginbutton">
-                        <button type="submit" value="submit" className="logins"
-                            onClick={this.submitHandler}>Login</button>
-                    </Col>
-                </Row><br />
-                <Row style={{marginLeft:"38%"}}>
-                    <h3>Don't have an account</h3>
-                    <div>
-                        <Nav tabs>
-                            <NavItem>
-                                <NavLink href="/Signup" className="signupbutton">Signup</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </div>
-                </Row><br />
-                <Row>
-                    <button type="submit" className="btn btn-primary"
-                    style={{marginLeft:"47%"}}> Login with facebook</button>
-                </Row>
-            </div>
-        )
+        if (localStorage.getItem('token') ? true : false) {
+            return (<Redirect to='/home' />);
+        }
+        else {
+            return (<div >
+                <Form className="APP" name="loginform" onSubmit={(event) => { this.handleLogin(event, this.state); }}>
+                    <Form.Row>
+
+                        <Form.Label>Email</Form.Label>
+
+                        <Form.Control type="email" name="email" onChange={(event) => { this.handleChange(event); }}></Form.Control>
+
+                    </Form.Row>
+                    <Form.Row>
+
+                        <Form.Label>Password</Form.Label>
+
+
+                        <Form.Control type="password" name="password" onChange={(event) => { this.handleChange(event); }}></Form.Control>
+
+                    </Form.Row>
+                    <Form.Row>
+                        <Button type="submit" variant="primary">Login</Button>
+                        <div class="fb-login-button"
+                        data-size="large"
+                        data-button-type="continue_with"
+                        data-layout="rounded"
+                        data-auto-logout-link="true"
+                        data-use-continue-as="true"
+                        data-width=""></div>
+                    </Form.Row>
+                    
+
+                </Form>
+            </div>);
+        }
     }
 }
+
+export default Login
