@@ -4,6 +4,7 @@ import {BrowserRouter as Router ,Route,Link,Switch} from "react-router-dom";
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

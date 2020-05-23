@@ -9,8 +9,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
-.logine{
+.login{
     margin-top: 20px;
     font-size: larger;
     background-color: springgreen;
