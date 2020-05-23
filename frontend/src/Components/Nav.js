@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
+import {NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
 
 const TopNav = () => {
     if (localStorage.getItem('token') ? true : false) {

@@ -22,7 +22,7 @@ class Login extends Component {
     componentDidMount() {
         window.fbAsyncInit = function () {
             FB.init({
-                appId: '262698028436859',
+                appId: '245477263560615',
                 cookie: true,
                 xfbml: true,
                 version: 'v7.0'
@@ -70,7 +70,7 @@ class Login extends Component {
     }
     render() {
         if (localStorage.getItem('token') ? true : false) {
-            return (<Redirect to='/home' />);
+            return (<Redirect to='/Home' />);
         }
         else {
             return (<div >
@@ -89,10 +89,10 @@ class Login extends Component {
 
                         <Form.Control type="password" name="password" onChange={(event) => { this.handleChange(event); }}></Form.Control>
 
-                    </Form.Row>
+                    </Form.Row><br/>
                     <Form.Row>
                         <Button type="submit" variant="primary">Login</Button>
-                        <div class="fb-login-button"
+                        <div className="fb-login-button"
                             data-size="large"
                             data-button-type="continue_with"
                             data-layout="rounded"
