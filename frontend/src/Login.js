@@ -58,7 +58,7 @@ export default class Login extends Component {
             <div className="mainborder">
                 <div className="login">Login</div><br />
                 <Row className="phone">
-                    <Col sm={{ size: 'auto', offset: 1 }}>
+                    <Col sm={{ size: 'auto', offset: 4 }}>
                         <Label for="phone" >Phone</Label>
                     </Col>
                     <Col sm={{ size: 'auto', offset: 0 }}>
@@ -70,7 +70,7 @@ export default class Login extends Component {
                 <div style={{ color: "red", fontSize: "14px" }}
                     className="errorMsgphone">{this.state.error_phone}</div><br />
                 <Row className="phone">
-                    <Col sm={{ size: 'auto', offset: 1 }}>
+                    <Col sm={{ size: 'auto', offset: 4 }}>
                         <Label for="password" >Password</Label>
                     </Col>
                     <Col sm={{ size: 'auto', offset: -3 }}>
@@ -86,7 +86,7 @@ export default class Login extends Component {
                             onClick={this.submitHandler}>Login</button>
                     </Col>
                 </Row><br />
-                <Row className="signups">
+                <Row style={{marginLeft:"38%"}}>
                     <h3>Don't have an account</h3>
                     <div>
                         <Nav tabs>
@@ -96,8 +96,9 @@ export default class Login extends Component {
                         </Nav>
                     </div>
                 </Row><br />
-                <Row className="loginwithfb">
-                    <button type="submit" className="btn btn-primary"> Login with facebook</button>
+                <Row>
+                    <button type="submit" className="btn btn-primary"
+                    style={{marginLeft:"47%"}}> Login with facebook</button>
                 </Row>
             </div>
         )

@@ -1,7 +1,3 @@
-/* .App-logo{
-    width: 1295px;
-    height: 560px;
-} */
 .Home{
     background-image: url(./images/food.jpg);
     height: max-content; 
@@ -10,18 +6,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
-.login{
-    margin-top: 20px;
-    font-size: larger;
-    background-color: springgreen;
-    font-weight: bold;
-}
-.signup{
-    margin-top: 20px;
-    font-size: larger;
-    background-color: springgreen;
-    font-weight: bold;
 }
 .header{
     margin-left: 450px;

@@ -1,49 +1,46 @@
 import React from 'react'
-import { Navbar, NavbarBrand, NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
 
 const TopNav = () => {
     if (localStorage.getItem('token') ? true : false) {
-        return (<>
-            
-                <NavbarBrand >Food Delivery</NavbarBrand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Collapse className="justify-content-end">
+        return (<div>
 
-                    <Nav className="mr-auto">
-                        <NavItem>
-                            <NavLink as={Link} href="/ome">Home</NavLink>
-                        </NavItem>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Collapse className="justify-content-end">
 
-                        <NavItem>
-                            <NavLink as={Link} href="/me">Hello, {localStorage.getItem('user_name')}
-                            </NavLink>
-                        </NavItem>
+                <Nav className="mr-auto">
+                    <NavItem>
+                        <NavLink href="/Home">Home</NavLink>
+                    </NavItem>
 
-                        <NavItem>
-                            <NavLink as={Link} href="/cart">Cart
-                            </NavLink>
-                        </NavItem>
-                        
-                    </Nav>
-                </Collapse>
-            
-        </>);
+                    <NavItem>
+                        <NavLink href="/me">Hello, {localStorage.getItem('user_name')}</NavLink>
+                    </NavItem>
+
+                    <NavItem>
+                        <NavLink href="/cart">Cart</NavLink>
+                    </NavItem>
+
+                </Nav>
+            </Collapse>
+
+        </div>);
     }
     else {
         return (<>
-            
-                <NavbarBrand >Food Delivery</NavbarBrand>
-                <NavbarToggler aria-controls="responsive-navbar-nav" />
-                    <Nav className="mr-auto">
-                        <NavItem>
-                            <NavLink as={Link} href="/home">Home</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink as={Link} href="/login">Login</NavLink>
-                        </NavItem>
-                    </Nav>
-            
+
+            <NavbarToggler aria-controls="responsive-navbar-nav" />
+            <Nav className="mr-auto">
+                <NavItem>
+                    <NavLink href="/Signup" className="btn btn-primary"
+                    style={{marginLeft: "750px",marginTop:"20px"}}>Signup</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink href="/Login" className="btn btn-primary"
+                    style={{marginLeft: "40px",marginTop:"20px"}}>Login</NavLink>
+                </NavItem>
+            </Nav>
+
         </>);
     }
 
