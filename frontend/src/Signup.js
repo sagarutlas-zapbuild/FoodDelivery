@@ -6,12 +6,12 @@ export default class Signup extends Component {
     constructor(state) {
         super(state)
         this.state = {
-            full_name: '',
+            name: '',
             phone: '',
             email: '',
             password: '',
             confirm_password: '',
-            error_full_name: '',
+            error_name: '',
             error_phone: '',
             error_email: '',
             error_password: '',
@@ -24,14 +24,14 @@ export default class Signup extends Component {
     }
 
     validateform() {
-        let error_full_name = "";
+        let error_name = "";
         let error_phone = "";
         let error_password = "";
         let error_confirm_password = "";
         let error_email = "";
 
-        if (!this.state.full_name) {
-            error_full_name = "*Required";
+        if (!this.state.name) {
+            error_name = "*Required";
         }
         if (!this.state.phone) {
             error_phone = "*Required";
@@ -54,10 +54,10 @@ export default class Signup extends Component {
             }
         }
 
-        if (error_full_name || error_phone || error_password
+        if (error_name || error_phone || error_password
             || error_confirm_password || error_email) {
             this.setState({
-                error_full_name, error_phone, error_password,
+                error_name, error_phone, error_password,
                 error_confirm_password, error_email
             });
             return false;
@@ -69,7 +69,7 @@ export default class Signup extends Component {
         const isValid = this.validateform();
         if (isValid) {
             const uploaddata = new FormData();
-            uploaddata.append('full_name', this.state.full_name);
+            uploaddata.append('name', this.state.name);
             uploaddata.append('username', this.state.phone);
             uploaddata.append('password', this.state.password);
             uploaddata.append('email', this.state.email);
@@ -85,24 +85,24 @@ export default class Signup extends Component {
     }
     render() {
         return (
-            <div className="signupborder" >
+            <div  style={{marginLeft: "40%"}}>
                 <form encType="multipart/form-data" onSubmit={this.submitHandler}>
                     <h1>Signup</h1>
-                    <div style={{ color: "green", fontWeight: "bold" }}>Full Name*</div>
-                    <input type="text" name="full_name" value={this.full_name} onChange={this.changeHandler} placeholder="Full name" />
-                    <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtitle">{this.state.error_full_name}</div><br />
+                    <div style={{ color: "green", fontWeight: "bold" }}>Name*</div>
+                    <input type="text" name="name" value={this.name} onChange={this.changeHandler} placeholder="Name" />
+                    <div style={{ color: "red", fontSize: "14px" }} >{this.state.error_name}</div><br />
                     <div style={{ color: "green", fontWeight: "bold" }}>Mobile No.*</div>
                     <input type="text" name="phone" value={this.phone} onChange={this.changeHandler} placeholder="Mobile No." />
-                    <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtitle">{this.state.error_phone}</div><br />
+                    <div style={{ color: "red", fontSize: "14px" }} >{this.state.error_phone}</div><br />
                     <div style={{ color: "green", fontWeight: "bold" }}>Email*</div>
                     <input type="text" name="email" value={this.email} onChange={this.changeHandler} placeholder="Email" />
-                    <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtitle">{this.state.error_email}</div><br />
+                    <div style={{ color: "red", fontSize: "14px" }} >{this.state.error_email}</div><br />
                     <div style={{ color: "green", fontWeight: "bold" }}>Password*</div>
                     <input type="password" name="password" value={this.password} onChange={this.changeHandler} placeholder="Password" />
-                    <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtitle">{this.state.error_password}</div><br />
+                    <div style={{ color: "red", fontSize: "14px" }} >{this.state.error_password}</div><br />
                     <div style={{ color: "green", fontWeight: "bold" }}>Confirm Password*</div>
                     <input type="password" name="confirm_password" value={this.confirm_password} onChange={this.changeHandler} placeholder="Confirm password" />
-                    <div style={{ color: "red", fontSize: "14px" }} className="errorMsgtitle">{this.state.error_confirm_password}</div><br />
+                    <div style={{ color: "red", fontSize: "14px" }} >{this.state.error_confirm_password}</div><br />
                     <button type="submit" style={{ fontWeight: "bold", backgroundColor: "#37BC9B" }}>Signup</button>
                 </form>
                 <Nav>
