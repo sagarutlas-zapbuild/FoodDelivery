@@ -37,7 +37,6 @@ class UserViewSet(GenericViewSet):
         return [permission() for permission in permission_classes]
 
     def create(self, request):
-        print(request.data)
         serializer = UserSerializer(data=request.data)
         if User.objects.filter(phone=request.data['phone']).exists() or User.objects.filter(phone=request.data['email']).exists():
             return Response(serializer.errors, status=status.HTTP_409_CONFLICT)
