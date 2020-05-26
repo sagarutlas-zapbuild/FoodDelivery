@@ -9,7 +9,26 @@ import TopNav  from './Components/Nav';
 
 
 export default class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      food_search:'',
+      data:[]
+    }
+    this.ChangeHandle = this.ChangeHandle.bind(this);
+  }
 
+  ChangeHandle = (event) => {
+    this.setState({
+        [event.target.name]: event.target.value,
+    });
+}
+
+handleSearch = (e) =>{
+  if(this.state.food_search===this.dynamicData.dish){
+    return(<><ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem> </>)
+  }
+}
   render() {
     return (
       <div className="Home">
@@ -17,8 +36,9 @@ export default class Home extends Component {
         <TopNav/>
       </Navbar>
       <div className="header">Food Delivery</div>
-      <input type="searchbox" placeholder="Search your food here" className="searchbox" />
-      <button className="search">Search</button><br /><br />
+      <input type="searchbox" name="food_search" value={this.food_search} placeholder="Search your food here"
+       className="searchbox" onChange={(event) => { this.ChangeHandle(event); }}/>
+      <button className="search" onClick={(e)=>{this.handleSearch(e);}}>Search</button><br /><br />
       <Container className="themed-container" fluid="md">
         <Row>
           <Col>
@@ -29,7 +49,6 @@ export default class Home extends Component {
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
-
             </ListGroup>
           </Col>
           <Col>
@@ -40,7 +59,6 @@ export default class Home extends Component {
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
               <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
-
             </ListGroup>
           </Col>
         </Row>
