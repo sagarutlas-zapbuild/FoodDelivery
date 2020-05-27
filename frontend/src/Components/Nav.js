@@ -8,16 +8,20 @@ const TopNav = () => {
             <NavbarToggler aria-controls="responsive-navbar-nav" />
 
                 <Nav className="mr-auto">
+                    <div>Hello</div>
                     <NavItem>
-                        <NavLink href="/Home">Home</NavLink>
+                        <NavLink href="/Home" style={{marginLeft: "750px",marginTop:"20px"}}
+                        >Home</NavLink>
                     </NavItem>
 
                     <NavItem>
-                        <NavLink href="/me">Hello, {localStorage.getItem('user_name')}</NavLink>
+                        <NavLink href="/me" style={{marginLeft: "40px",marginTop:"20px"}}
+                        >Hello {localStorage.getItem('user_name')}</NavLink>
                     </NavItem>
 
                     <NavItem>
-                        <NavLink href="/cart">Cart</NavLink>
+                        <NavLink href="/cart" style={{marginLeft: "40px",marginTop:"20px"}}
+                        >Cart</NavLink>
                     </NavItem>
 
                 </Nav>

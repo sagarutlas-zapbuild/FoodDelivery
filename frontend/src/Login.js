@@ -27,11 +27,8 @@ class Login extends Component {
                 xfbml: true,
                 version: 'v7.0'
             });
-
             FB.AppEvents.logPageView();
-
         };
-
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
@@ -76,20 +73,13 @@ class Login extends Component {
             return (<div >
                 <Form className="APP" name="loginform" onSubmit={(event) => { this.handleLogin(event, this.state); }}>
                     <Form.Row>
-
                         <Form.Label>Email</Form.Label>
-
                         <Form.Control type="email" name="email" onChange={(event) => { this.handleChange(event); }}></Form.Control>
-
                     </Form.Row>
                     <Form.Row>
-
                         <Form.Label>Password</Form.Label>
-
-
                         <Form.Control type="password" name="password" onChange={(event) => { this.handleChange(event); }}></Form.Control>
-
-                    </Form.Row><br/>
+                    </Form.Row><br />
                     <Form.Row>
                         <Button type="submit" variant="primary">Login</Button>
                         <div className="fb-login-button"
@@ -100,12 +90,10 @@ class Login extends Component {
                             data-use-continue-as="true"
                             data-width=""></div>
                     </Form.Row>
-
-
                 </Form>
             </div>);
         }
     }
 }
 
-export default Login
+export default Login;
