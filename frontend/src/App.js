@@ -4,6 +4,7 @@ import {BrowserRouter as Router ,Route,Link,Switch} from "react-router-dom";
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import Cart from './Cart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Route exact path ='/Home' component = {Home}/>
       <Route exact path ='/Login' component = {Login}/>
       <Route exact path ='/Signup' component = {Signup}/>
-
+      <Route exact path ='/Cart' component = {Cart}/>
       </Switch>
        </div>
      </Router>

@@ -14,6 +14,8 @@ export default class Home extends Component {
     super(props);
     this.state={
       food_search:'',
+      dish:'',
+      restaurant:'',
       data:[]
     }
     this.ChangeHandle = this.ChangeHandle.bind(this);
@@ -48,6 +50,9 @@ handleSearch = (e) =>{
   uploadData.append('restaurant', this.dynamicData.restaurant);
   fetch(cartUrl, {
             method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+          },
             body: uploadData
           })
           .then( res => console.log(res))
