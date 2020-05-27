@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
+import {NavItem, NavLink, NavbarToggler, Nav } from 'reactstrap';
 
 const TopNav = () => {
     if (localStorage.getItem('token') ? true : false) {
@@ -8,20 +8,19 @@ const TopNav = () => {
             <NavbarToggler aria-controls="responsive-navbar-nav" />
 
                 <Nav className="mr-auto">
-                    <div>Hello</div>
                     <NavItem>
                         <NavLink href="/Home" style={{marginLeft: "750px",marginTop:"20px"}}
-                        >Home</NavLink>
+                        className="btn btn-primary">Home</NavLink>
                     </NavItem>
 
                     <NavItem>
                         <NavLink href="/me" style={{marginLeft: "40px",marginTop:"20px"}}
-                        >Hello {localStorage.getItem('user_name')}</NavLink>
+                        className="btn btn-primary">Hello {localStorage.getItem('user_name')}</NavLink>
                     </NavItem>
 
                     <NavItem>
                         <NavLink href="/cart" style={{marginLeft: "40px",marginTop:"20px"}}
-                        >Cart</NavLink>
+                        className="btn btn-primary">Cart</NavLink>
                     </NavItem>
 
                 </Nav>
