@@ -6,6 +6,7 @@ import './Home.css';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 // import { Link } from 'react-router-dom';
 import TopNav  from './Components/Nav';
+import { restaurantUrl ,cartUrl } from './Urls';
 
 
 export default class Home extends Component {
@@ -24,10 +25,33 @@ export default class Home extends Component {
     });
 }
 
+componentDidMount(){
+  fetch(restaurantUrl, {
+      headers: {
+          'Content-Type': 'application/json',
+          }
+  })
+  .then((Response)=>
+          Response.json())
+          .then((findresponse)=>
+          {
+              console.log(findresponse)
+              this.setState({
+                  data:findresponse,
+              })
+          })
+}
 handleSearch = (e) =>{
-  if(this.state.food_search===this.dynamicData.dish){
-    return(<><ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem> </>)
-  }
+  e.preventDefault();
+  const uploadData = new FormData();
+  uploadData.append('dish', this.dynamicData.dish);
+  uploadData.append('restaurant', this.dynamicData.restaurant);
+  fetch(cartUrl, {
+            method: 'POST',
+            body: uploadData
+          })
+          .then( res => console.log(res))
+          .catch(error => console.log(error))
 }
   render() {
     return (
@@ -44,21 +68,45 @@ handleSearch = (e) =>{
           <Col>
             <ListGroup>
               <ListGroupItem color="success"><p className="restourent">Dishes</p></ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>pizza</ListGroupItem>
+              {this.state.data.map((dynamicData,key)=>{
+                if(this.state.food_search===this.dynamicData.dish){
+                  return(
+                    <div>
+              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} 
+              value={this.dynamicData.dish} name={this.dynamicData.dish} action>{this.dynamicData.dish}</ListGroupItem>
+                    </div>
+                  )
+                }})
+              }
             </ListGroup>
           </Col>
           <Col>
             <ListGroup>
               <ListGroupItem color="success" ><p className="restourent">Restaurant</p></ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
-              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} value={this.dynamicData} id={this.dynamicData} name={this.dynamicData} action>Domino's</ListGroupItem>
+              {this.state.data.map((dynamicData,key)=>{
+                if(this.state.food_search===this.dynamicData.dish){
+                  return(
+                    <div>
+              <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton} 
+              value={this.dynamicData.restaurant} name={this.dynamicData.restaurant} action>{this.dynamicData.restaurant}</ListGroupItem>
+                    </div>
+                  )
+                }})
+              }
+            </ListGroup>
+          </Col>
+          <Col>
+            <ListGroup>
+            <ListGroupItem color="success" ><p className="restourent">Click to add in cart</p></ListGroupItem>
+            {this.state.data.map((dynamicData,key)=>{
+                if(this.state.food_search===this.dynamicData.dish){
+                  return(
+                    <div>
+              <ListGroupItem tag="button" data-backdrop="false" onClick={this.handleSearch}>Add to cart</ListGroupItem>
+                    </div>
+                  )
+                }})
+              }
             </ListGroup>
           </Col>
         </Row>
