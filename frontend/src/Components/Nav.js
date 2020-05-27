@@ -3,10 +3,9 @@ import {NavItem, NavLink, NavbarToggler, Nav, Collapse } from 'reactstrap';
 
 const TopNav = () => {
     if (localStorage.getItem('token') ? true : false) {
-        return (<div>
+        return (<>
 
             <NavbarToggler aria-controls="responsive-navbar-nav" />
-            <Collapse className="justify-content-end">
 
                 <Nav className="mr-auto">
                     <NavItem>
@@ -22,9 +21,8 @@ const TopNav = () => {
                     </NavItem>
 
                 </Nav>
-            </Collapse>
 
-        </div>);
+        </>);
     }
     else {
         return (<>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -22,9 +23,6 @@ class RestaurantViewSet(GenericViewSet):
             return [permission() for permission in permission_classes]
         elif self.action == 'create':
             permission_classes = [IsAdminUser]
-            return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
             return [permission() for permission in permission_classes]
 
     def list(self, request):
@@ -75,9 +73,6 @@ class ItemViewSet(GenericViewSet):
         elif self.action == 'create':
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
-            return [permission() for permission in permission_classes]
 
     def list(self, request):
         serializer = ItemSerializer(self.queryset, many=True)
@@ -93,17 +88,20 @@ class ItemViewSet(GenericViewSet):
 
 class CartViewSet(GenericViewSet):
     serializer_class = CartSerializer
-    queryset = Cart.objects.all()
+    def get_queryset(self):
+        """
+        This view should return a list of all the carts
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Purchase.objects.filter(user=user)
 
     def get_permissions():
         if self.action == 'list' or self.action == 'retrieve':
-            permission_classes = [AllowAny]
+            permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
         elif self.action == 'create':
-            permission_classes = [IsAdminUser]
-            return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
+            permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
 
     def list(self, request):
@@ -129,9 +127,6 @@ class CartItemViewSet(GenericViewSet):
         elif self.action == 'create':
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
-            return [permission() for permission in permission_classes]
 
     def list(self, request):
         serializer = CartItemSerializer(self.queryset, many=True)
@@ -155,9 +150,6 @@ class CouponViewSet(GenericViewSet):
             return [permission() for permission in permission_classes]
         elif self.action == 'create':
             permission_classes = [IsAdminUser]
-            return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
             return [permission() for permission in permission_classes]
 
     def list(self, request):
@@ -183,9 +175,6 @@ class UserCouponViewSet(GenericViewSet):
         elif self.action == 'create':
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
-        else:
-            permission_classes = [IsSuperUser]
-            return [permission() for permission in permission_classes]
 
     def list(self, request):
         serializer = UserCouponSerializer(self.queryset, many=True)
@@ -202,13 +191,22 @@ class UserCouponViewSet(GenericViewSet):
 class OrderViewSet(GenericViewSet):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
+    
+    def get_queryset(self):
+        """
+        This view should return a list of all the Orders
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Purchase.objects.filter(user=user)
+
 
     def get_permissions():
         if self.action == 'create':
             permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
         else:
-            permission_classes = [IsAuthenticated, IsSelf]
+            permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
 
     def list(self, request):
