@@ -6,7 +6,6 @@ const TopNav = () => {
         return (<>
 
             <NavbarToggler aria-controls="responsive-navbar-nav" />
-            <Collapse className="justify-content-end">
 
                 <Nav className="mr-auto">
                     <div>Hello</div>
@@ -26,7 +25,6 @@ const TopNav = () => {
                     </NavItem>
 
                 </Nav>
-            </Collapse>
 
         </>);
     }
