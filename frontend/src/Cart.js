@@ -9,6 +9,7 @@ export default class Cart extends Component {
             data: [],
             dish:'',
             restaurant:'',
+            toggle:false,
         }
     }
     componentDidMount() {
@@ -52,7 +53,7 @@ export default class Cart extends Component {
                                 <ListGroup>
                                     <ListGroupItem color='success'>Dish</ListGroupItem>
                                     {this.state.data.map((dynamicData, key) => {
-                                        if (this.state.food_search === this.dynamicData.dish) {
+                                        if (this.state.toggle === 'false') {
                                             return (
                                                 <div>
                                                     <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton}
@@ -68,7 +69,7 @@ export default class Cart extends Component {
                                 <ListGroup>
                                     <ListGroupItem color='success'>Restaurant</ListGroupItem>
                                     {this.state.data.map((dynamicData, key) => {
-                                        if (this.state.food_search === this.dynamicData.dish) {
+                                        if (this.state.toggle === 'false') {
                                             return (
                                                 <div>
                                                     <ListGroupItem tag="button" data-backdrop="false" onClick={this.toggleButton}
@@ -84,7 +85,7 @@ export default class Cart extends Component {
                                 <ListGroup>
                                     <ListGroupItem color='success'>Click to Order</ListGroupItem>
                                     {this.state.data.map((dynamicData, key) => {
-                                        if (this.state.food_search === this.dynamicData.dish) {
+                                        if (this.state.toggle === 'false') {
                                             return (
                                                 <div>
                                                     <ListGroupItem tag="button" data-backdrop="false" onClick={this.OrderNow}>Order Now</ListGroupItem>
