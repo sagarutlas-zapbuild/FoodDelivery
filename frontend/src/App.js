@@ -6,23 +6,21 @@ import Login from './Login';
 import Signup from './Signup';
 import Cart from './Cart';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Payments from './Components/payments/Payments';
 
 function App() {
   return (
     <div className="App">
-     <Router>
-       <div>
-       <ul>
-        < Link to="/"></Link>
-      </ul>
+     <Router className="App">
+       
       <Switch>
       <Route exact path ='/' component = {Home}/>
       <Route exact path ='/Home' component = {Home}/>
       <Route exact path ='/Login' component = {Login}/>
       <Route exact path ='/Signup' component = {Signup}/>
       <Route exact path ='/Cart' component = {Cart}/>
+      <Route exact path ='/payment' component = {Payments}/>
       </Switch>
-       </div>
      </Router>
     </div>
   );
