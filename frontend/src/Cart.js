@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 import { restaurantUrl ,orderUrl } from './Urls';
+import { Link } from 'react-router-dom';
+
 
 export default class Cart extends Component {
     constructor(state) {
@@ -99,7 +101,7 @@ export default class Cart extends Component {
                         </Row>
 
                     </div>
-
+<Link to='payment/'>Pay</Link>
                 </Container>
             </div>
         )

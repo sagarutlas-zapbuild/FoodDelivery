@@ -3,6 +3,8 @@ from rest_framework.routers import DefaultRouter
 
 from .views import RestaurantViewSet, ItemCategoryViewSet, ItemViewSet, CartViewSet, CartItemViewSet, CouponViewSet, UserCouponViewSet, OrderViewSet, RestaurantRatingViewSet, ItemRatingViewSet
 
+from .payments import secret
+
 router = DefaultRouter()
 
 router.register(r'restaurants', RestaurantViewSet, basename='restaurant')
@@ -16,4 +18,5 @@ router.register(r'orders', OrderViewSet, basename='')
 router.register(r'restaurant_ratings', RestaurantRatingViewSet, basename='')
 router.register(r'item_ratings', ItemRatingViewSet, basename='')
 
-urlpatterns = [path('', include(router.urls)), ]
+urlpatterns = [path('', include(router.urls)),
+path('secret/', secret) ]
