@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import RestaurantViewSet, ItemCategoryViewSet, ItemViewSet, CartViewSet, CartItemViewSet, CouponViewSet, UserCouponViewSet, OrderViewSet, RestaurantRatingViewSet, ItemRatingViewSet
+from .views import RestaurantViewSet, ItemCategoryViewSet, ItemViewSet, CartViewSet, CartItemViewSet, CouponViewSet, UserCouponViewSet, OrderViewSet, RestaurantRatingViewSet, ItemRatingViewSet, search
 
 from .payments import secret
 
@@ -19,4 +19,5 @@ router.register(r'restaurant_ratings', RestaurantRatingViewSet, basename='')
 router.register(r'item_ratings', ItemRatingViewSet, basename='')
 
 urlpatterns = [path('', include(router.urls)),
-path('secret/', secret) ]
+               path('secret/<int:pk>', secret),
+               path('search/', search)]

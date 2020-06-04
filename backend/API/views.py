@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.decorators import action, api_view
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -12,6 +12,13 @@ from .models import Restaurant, ItemCategory, Item, Cart, CartItem, Coupon, User
 from .serializers import RestaurantSerializer, ItemCategorySerializer, ItemSerializer, CartSerializer, CartItemSerializer, CouponSerializer, UserCouponSerializer, OrderSerializer, RestaurantRatingSerializer, ItemRatingSerializer
 # Create your views here.
 
+@api_view(['Post'])
+@permission_classes([AllowAny])
+def search(request):
+    result = {}
+    result['restaurants'] = RestaurantSerializer(Restaurant.objects.filter(name = r'*+' + request.data['keyword'] + r'*+'), many = True).data
+    result['items'] = ItemSerializer(Item.objects.filter(name = request.data['keyword']), many = True).data
+    return Response(result, status = 200)
 
 class RestaurantViewSet(GenericViewSet):
     serializer_class = RestaurantSerializer
@@ -94,7 +101,7 @@ class CartViewSet(GenericViewSet):
         for the currently authenticated user.
         """
         user = self.request.user
-        return Purchase.objects.filter(user=user)
+        return Cart.objects.filter(user=user)
 
     def get_permissions():
         if self.action == 'list' or self.action == 'retrieve':
