@@ -70,6 +70,7 @@ class Cart(models.Model):
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
+    """ items = models.ManyToManyField(to=Item, through='CartItem') """
     total = models.FloatField()
 
 

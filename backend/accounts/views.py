@@ -11,15 +11,6 @@ from .models import User
 # Create your views here.
 
 
-class IsSelf(BasePermission):
-    """
-    Object-level permission to only allow acces to self only.
-    """
-
-    def has_object_permission(self, request, view, obj):
-        return obj == request.user
-
-
 class UserViewSet(GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
