@@ -28,12 +28,14 @@ class RestaurantViewSet(GenericViewSet):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ self.action == 'create' """
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
 
     def list(self, request):
         serializer = RestaurantSerializer(self.queryset, many=True)
+        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def create(self, request):
@@ -48,7 +50,7 @@ class ItemCategoryViewSet(GenericViewSet):
     serializer_class = ItemCategorySerializer
     queryset = ItemCategory.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
@@ -73,11 +75,12 @@ class ItemViewSet(GenericViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ if self.action == 'create' """
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
 
@@ -103,11 +106,12 @@ class CartViewSet(GenericViewSet):
         user = self.request.user
         return Cart.objects.filter(user=user)
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ if self.action == 'create' """
             permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
 
@@ -127,11 +131,12 @@ class CartItemViewSet(GenericViewSet):
     serializer_class = CartItemSerializer
     queryset = CartItem.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ if self.action == 'create' """
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
 
@@ -151,11 +156,12 @@ class CouponViewSet(GenericViewSet):
     serializer_class = CouponSerializer
     queryset = Coupon.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ if self.action == 'create' """
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
 
@@ -175,11 +181,12 @@ class UserCouponViewSet(GenericViewSet):
     serializer_class = UserCouponSerializer
     queryset = UserCoupon.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [IsSelf]
             return [permission() for permission in permission_classes]
-        elif self.action == 'create':
+        else:
+            """ if self.action == 'create' """
             permission_classes = [IsAdminUser]
             return [permission() for permission in permission_classes]
 
@@ -205,10 +212,10 @@ class OrderViewSet(GenericViewSet):
         for the currently authenticated user.
         """
         user = self.request.user
-        return Purchase.objects.filter(user=user)
+        return Order.objects.filter(user=user)
 
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'create':
             permission_classes = [IsAuthenticated]
             return [permission() for permission in permission_classes]
@@ -232,7 +239,7 @@ class RestaurantRatingViewSet(GenericViewSet):
     serializer_class = RestaurantRatingSerializer
     queryset = RestaurantRating.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
@@ -259,7 +266,7 @@ class ItemRatingViewSet(GenericViewSet):
     serializer_class = ItemRatingSerializer
     queryset = ItemRating.objects.all()
 
-    def get_permissions():
+    def get_permissions(self):
         if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny]
             return [permission() for permission in permission_classes]
